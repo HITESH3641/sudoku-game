@@ -349,7 +349,21 @@ btn2.addEventListener("click", hint);
 
 cont.addEventListener("mouseover", (event) => {
     if (!event.target.classList.contains("box")) return;
-    let i = Number(event.target.id) / 10;
-    let j = Number(event.target.id) % 10;
-    console.log(i, j);
+
+    // Remove previous highlights
+    document.querySelectorAll(".hovered").forEach(cell => {
+        cell.classList.remove("hovered");
+    });
+
+    let r = Math.floor(Number(event.target.id) / 10);
+    let c = Number(event.target.id) % 10;
+
+    let row = Math.floor(r / 3) * 3;
+    let col = Math.floor(c / 3) * 3;
+
+    for (let i = row; i < row + 3; i++) {
+        for (let j = col; j < col + 3; j++) {
+            document.getElementById(`${i}${j}`).classList.add("hovered");
+        }
+    }
 });
