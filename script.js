@@ -154,7 +154,7 @@ let check = function () {
                 }
             }
         }
-    }, 5000)
+    }, 2500)
 }
 
 let hint = function () {
