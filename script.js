@@ -7,6 +7,7 @@ let sudo;
 let arr;
 let soln;
 let lastclick;
+let checking = false;
 
 
 let create = function (arr) {
@@ -135,6 +136,16 @@ btn.addEventListener("click", solve);
 
 
 let check = function () {
+    
+     checking = true;
+
+    document.querySelectorAll(".hovered").forEach(cell => {
+        cell.classList.remove("hovered");
+    });
+    
+    document.querySelectorAll(".active-cell").forEach(cell => {
+        cell.classList.remove("active-cell");
+    });
     for (i = 0; i < arr.length; i++) {
         for (j = 0; j < arr.length; j++) {
             if (soln[i][j] != sudo[i][j]) {
@@ -146,6 +157,7 @@ let check = function () {
 
         }
     }
+     
     setTimeout(() => {
         for (i = 0; i < arr.length; i++) {
             for (j = 0; j < arr.length; j++) {
@@ -154,7 +166,10 @@ let check = function () {
                 }
             }
         }
-    }, 2500)
+
+        checking = false; 
+    }, 2200)
+
 }
 
 let hint = function () {
@@ -170,7 +185,9 @@ btn2.addEventListener("click", hint);
 
 cont.addEventListener("mouseover", (event) => {
     if (!event.target.classList.contains("box")) return;
-
+        if(checking){
+            return;
+        }
     // Remove previous highlights
     document.querySelectorAll(".hovered").forEach(cell => {
         cell.classList.remove("hovered");
