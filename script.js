@@ -30,7 +30,7 @@ let create = function (arr) {
     }
 }
 let call = async function () {
-    let res = await fetch('https://sudoku-api.vercel.app/api/dosuku');
+    let res = await fetch('https://sudoku-api.vercel.app/api/dosuku2');
     let sudoku;
     if (res.ok) {
         sudoku = await res.json();
@@ -276,6 +276,7 @@ cont.addEventListener('click', (event) => {
 }
 )
 
+
 let solve = function () {
 
     // for (i = 0; i < arr.length; i++) {
@@ -334,6 +335,7 @@ let check = function () {
         }
     }, 5000)
 }
+
 let hint = function () {
     let i = lastclick[0];
     let j = lastclick[1];
@@ -344,3 +346,10 @@ let hint = function () {
 
 btn1.addEventListener("click", check);
 btn2.addEventListener("click", hint);
+
+cont.addEventListener("mouseover", (event) => {
+    if (!event.target.classList.contains("box")) return;
+    let i = Number(event.target.id) / 10;
+    let j = Number(event.target.id) % 10;
+    console.log(i, j);
+});
